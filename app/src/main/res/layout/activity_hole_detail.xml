@@ -1,0 +1,46 @@
+<nu.ekskog.bitdisc.game.GameScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="nu.ekskog.bitdisc.course.HoleEditActivity"
+    style="@style/activityLayout">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hole_par"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/hole_par"
+            android:textSize="24sp"
+            android:text="@string/zero" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hole_distance"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/hole_distance"
+            android:textSize="24sp"
+            android:text="@string/zero" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:id="@+id/hole_map"
+            android:contentDescription="@string/hole_map" />
+
+    </LinearLayout>
+</nu.ekskog.bitdisc.game.GameScrollView>

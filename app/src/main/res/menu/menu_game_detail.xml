@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="nu.ekskog.bitdisc.game.GameDetailActivity">
+    <!--<item android:id="@+id/action_edit_game" android:title="@string/action_edit_game"-->
+        <!--android:orderInCategory="100" app:showAsAction="never" />-->
+    <!--<item android:id="@+id/action_play_game" android:title="@string/action_play_game"-->
+        <!--android:orderInCategory="100" app:showAsAction="never" />-->
+</menu>

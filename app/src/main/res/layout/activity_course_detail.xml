@@ -1,0 +1,83 @@
+<nu.ekskog.bitdisc.game.GameScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="nu.ekskog.bitdisc.course.CourseDetailActivity"
+    style="@style/activityLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/course_name"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="A Course"
+            android:textSize="24sp"
+            android:id="@+id/txt_name" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="City"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="A city"
+            android:textSize="24sp"
+            android:id="@+id/txt_city" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Par"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="61"
+            android:textSize="24sp"
+            android:id="@+id/txt_par" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Distance"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="2052 meters"
+            android:textSize="24sp"
+            android:id="@+id/txt_distance" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/course_map"
+            android:contentDescription="@string/course_map" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/holes"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:orientation="vertical"
+            android:id="@+id/list_holes" />
+    </LinearLayout>
+</nu.ekskog.bitdisc.game.GameScrollView>

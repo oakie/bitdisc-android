@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="nu.ekskog.bitdisc" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".BitdiscApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo" >
+
+        <!-- Meta data -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <meta-data
+            android:name="CLOUDINARY_URL"
+            android:value="@string/cloudinary_url"/>
+
+        <!-- Services -->
+        <service
+            android:name=".BitdiscService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
+
+        <!-- Activities -->
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".user.UserActivity"
+            android:label="@string/title_activity_user"
+            android:parentActivityName=".MainActivity" >
+        </activity>
+        <activity
+            android:name=".user.UserDetailActivity"
+            android:label="@string/title_activity_user_detail" >
+        </activity>
+        <activity
+            android:name=".course.CourseActivity"
+            android:label="@string/title_activity_course"
+            android:parentActivityName=".MainActivity" >
+        </activity>
+        <activity
+            android:name=".course.CourseEditActivity"
+            android:label="@string/title_activity_course_edit" >
+        </activity>
+        <activity
+            android:name=".course.HoleEditActivity"
+            android:label="@string/title_activity_hole_edit" >
+        </activity>
+        <activity
+            android:name=".course.CourseDetailActivity"
+            android:label="@string/title_activity_course_detail" >
+        </activity>
+        <activity
+            android:name=".course.HoleDetailActivity"
+            android:label="@string/title_activity_hole_detail" >
+        </activity>
+        <activity
+            android:name=".game.GameActivity"
+            android:label="@string/title_activity_game"
+            android:parentActivityName=".MainActivity" >
+        </activity>
+        <activity
+            android:name=".game.GameEditActivity"
+            android:label="@string/title_activity_game_edit" >
+        </activity>
+        <activity
+            android:name=".game.GamePlayActivity"
+            android:label="@string/title_activity_game_play" >
+        </activity>
+        <activity
+            android:name=".game.GameDetailActivity"
+            android:label="@string/title_activity_game_detail" >
+        </activity>
+    </application>
+
+</manifest>

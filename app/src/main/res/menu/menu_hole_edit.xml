@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="nu.ekskog.bitdisc.course.HoleEditActivity">
+    <item android:id="@+id/action_save_hole"
+        android:title="@string/action_save_hole"
+        android:icon="@drawable/save"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom" />
+    <item android:id="@+id/action_set_map"
+        android:title="@string/action_set_map"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/action_unset_map"
+        android:title="@string/action_unset_map"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>
