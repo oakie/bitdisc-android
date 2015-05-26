@@ -5,11 +5,11 @@ Disc golf score card application for android. User authentication is handled by 
 [cloudinary](http://cloudinary.com/).
 
 ## Install
-1. Clone repo:
+* Clone repo:
 ```bash
         git clone git@github.com:oakie/bitdisc-android.git
 ```
-2. Create a file in `app/src/main/res/values/secrets.xml` containing:
+* Create a file in `app/src/main/res/values/secrets.xml` containing:
 ```mxml
         <?xml version="1.0" encoding="utf-8"?>
         <resources>
@@ -18,4 +18,4 @@ Disc golf score card application for android. User authentication is handled by 
           <string name="cloudinary_url">YOUR_CLOUDINARY_URL</string>
         </resources>
 ```
-3. Build and enjoy!
+* Build and enjoy!
