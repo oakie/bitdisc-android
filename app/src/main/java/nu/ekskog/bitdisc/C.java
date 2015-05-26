@@ -16,6 +16,7 @@ public class C {
     public static final String FIELD_NAME = "name";
     public static final String FIELD_EMAIL = "email";
     public static final String FIELD_IS_GUEST = "is_guest";
+    public static final String FIELD_FRIENDS = "friends";
     public static final String FIELD_AVATAR = "avatar";
     public static final String FIELD_TIMESTAMP = "timestamp";
     public static final String FIELD_CITY = "city";

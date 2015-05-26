@@ -13,7 +13,6 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.cloudinary.Cloudinary;
-import com.cloudinary.android.Utils;
 import com.firebase.client.AuthData;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -26,6 +25,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -199,7 +199,7 @@ public class BitdiscService extends Service {
         mRootRef.child(entity.getType()).child(id).child(key).removeValue();
     }
 
-    public Entity getUser() {
+    public Entity getMe() {
         return mUsers.get(mUser);
     }
 
@@ -279,7 +279,18 @@ public class BitdiscService extends Service {
         guest.put(C.FIELD_IS_GUEST, true);
         pushEntity(guest);
 
-        // TODO: add in my list of friends
+        Entity oldUser = getMe();
+        Entity newUser = new Entity(oldUser);
+
+        ArrayList<String> newFriends = new ArrayList<>();
+        if(oldUser.has(C.FIELD_FRIENDS)) {
+            ArrayList<String> oldFriends = (ArrayList<String>) oldUser.get(C.FIELD_FRIENDS);
+            for (String f : oldFriends)
+                newFriends.add(f);
+        }
+        newFriends.add((String) guest.get(C.FIELD_ID));
+        newUser.put(C.FIELD_FRIENDS, newFriends);
+        updateEntity(newUser);
 
         return guest;
     }
@@ -425,7 +436,7 @@ public class BitdiscService extends Service {
         public FetchAvatarTask(String url) { super(); mUrl = url; }
         @Override
         protected Void doInBackground(Void... params) {
-            Entity oldUser = getUser();
+            Entity oldUser = getMe();
             if(oldUser == null) return null;
             Log.d(C.TAG, "downloading avatar");
 

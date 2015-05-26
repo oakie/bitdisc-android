@@ -2,25 +2,17 @@ package nu.ekskog.bitdisc;
 
 import android.content.ComponentName;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.Arrays;
 
 import nu.ekskog.bitdisc.course.CourseActivity;
@@ -106,7 +98,7 @@ public class MainActivity extends AbstractBitdiscActivity {
     private void setHeading() {
         if(!mServiceBound)
             return;
-        Entity user = mDataStore.getUser();
+        Entity user = mDataStore.getMe();
         if(user != null)
             mTxtHeading.setText("Welcome, " + user.get("name") + "!");
         else

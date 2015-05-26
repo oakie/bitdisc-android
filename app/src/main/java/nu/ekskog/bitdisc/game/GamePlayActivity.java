@@ -262,7 +262,8 @@ public class GamePlayActivity extends AbstractBitdiscActivity {
             rowScore.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     AlertDialog.Builder playerBuilder = new AlertDialog.Builder(GamePlayActivity.this);
-                    playerBuilder.setTitle("Hole " + String.valueOf(row + 1)).setView(makeInputDialogView(row))
+                    playerBuilder.setTitle("Hole " + String.valueOf(row + 1))
+                            .setView(makeInputDialogView(row))
                             .setPositiveButton("Close", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();

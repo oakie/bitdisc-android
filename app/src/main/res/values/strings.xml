@@ -63,5 +63,6 @@
     <string name="zero">0</string>
     <string name="hole_par">Hole par</string>
     <string name="hole_distance">Hole distance [meters]</string>
+    <string name="friends">Friends</string>
 
 </resources>

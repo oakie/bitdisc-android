@@ -17,7 +17,6 @@ import android.widget.ListView;
 import android.widget.Space;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -226,10 +225,15 @@ public class GameEditActivity extends AbstractBitdiscActivity {
         mGuests.clear();
 
         for(Entity user : mDataStore.getUsers().values()) {
-            if(user.has(C.FIELD_IS_GUEST) && (Boolean) user.get(C.FIELD_IS_GUEST))
-                mGuests.add(user);
-            else
+            if(!user.has(C.FIELD_IS_GUEST) || !(Boolean) user.get(C.FIELD_IS_GUEST))
                 mUsers.add(user);
+        }
+
+        Entity me = mDataStore.getMe();
+        if(me.has(C.FIELD_FRIENDS)) {
+            ArrayList<String> friends = (ArrayList<String>) me.get(C.FIELD_FRIENDS);
+            for(String f : friends)
+                mGuests.add(mDataStore.getUsers().get(f));
         }
 
         mUserAdapter.notifyDataSetChanged();
