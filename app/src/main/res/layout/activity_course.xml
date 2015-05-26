@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="nu.ekskog.bitdisc.course.CourseActivity"
-    style="@style/activityLayout">
+    style="@style/bitdisc_activity">
 
     <ListView
         android:layout_width="fill_parent"

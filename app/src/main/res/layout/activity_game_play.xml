@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="nu.ekskog.bitdisc.game.GamePlayActivity"
-    style="@style/activityLayout">
+    style="@style/bitdisc_activity">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -10,10 +10,8 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Course"
-            android:textSize="30sp" />
+            style="@style/header"
+            android:text="@string/game_course" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -23,10 +21,8 @@
             android:id="@+id/txt_course" />
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="Start time" />
+            style="@style/header"
+            android:text="@string/start_time" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -36,10 +32,8 @@
             android:id="@+id/txt_start" />
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="Duration" />
+            style="@style/header"
+            android:text="@string/duration" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -49,10 +43,8 @@
             android:id="@+id/txt_duration" />
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="Scorecard" />
+            style="@style/header"
+            android:text="@string/scorecard" />
 
         <TableLayout
             android:layout_width="fill_parent"
@@ -68,5 +60,7 @@
             android:id="@+id/table_body"
             android:stretchColumns="*">
         </TableLayout>
+
     </LinearLayout>
+
 </nu.ekskog.bitdisc.game.GameScrollView>

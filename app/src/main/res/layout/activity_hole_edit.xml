@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="nu.ekskog.bitdisc.course.HoleEditActivity"
-    style="@style/activityLayout">
+    style="@style/bitdisc_activity">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -17,10 +17,8 @@
             android:layout_height="0px" />
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="Hole par" />
+            style="@style/header"
+            android:text="@string/hole_par" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -28,13 +26,11 @@
             android:inputType="number"
             android:id="@+id/edit_par"
             android:textSize="24sp"
-            android:text="0" />
+            android:text="@string/zero" />
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="Hole distance [meter]" />
+            style="@style/header"
+            android:text="@string/hole_distance" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -42,7 +38,7 @@
             android:inputType="number"
             android:id="@+id/edit_distance"
             android:textSize="24sp"
-            android:text="0" />
+            android:text="@string/zero" />
 
         <ImageView
             android:layout_width="fill_parent"
@@ -52,4 +48,5 @@
             android:contentDescription="@string/hole_map" />
 
     </LinearLayout>
+
 </nu.ekskog.bitdisc.game.GameScrollView>
