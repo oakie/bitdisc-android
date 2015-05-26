@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="nu.ekskog.bitdisc.course.CourseEditActivity">
+    tools:context="nu.ekskog.bitdisc.activities.CourseEditActivity">
     <item android:id="@+id/action_create_hole"
         android:title="@string/action_create_hole"
         android:orderInCategory="100"

@@ -1,8 +1,7 @@
-package nu.ekskog.bitdisc.game;
+package nu.ekskog.bitdisc;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -13,10 +12,7 @@ import android.widget.ScrollView;
 
 import java.util.ArrayList;
 
-import nu.ekskog.bitdisc.R;
-
-public class GameScrollView  extends ScrollView
-{
+public class BitdiscScrollView extends ScrollView {
     /**
      * Tag for views that should stick and have constant drawing. e.g. TextViews, ImageViews etc
      */
@@ -54,15 +50,15 @@ public class GameScrollView  extends ScrollView
         }
     };
 
-    public GameScrollView(Context context) {
+    public BitdiscScrollView(Context context) {
         this(context, null);
     }
 
-    public GameScrollView(Context context, AttributeSet attrs) {
+    public BitdiscScrollView(Context context, AttributeSet attrs) {
         this(context, attrs, android.R.attr.scrollViewStyle);
     }
 
-    public GameScrollView(Context context, AttributeSet attrs, int defStyle) {
+    public BitdiscScrollView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setup();
     }

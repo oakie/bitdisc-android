@@ -1,7 +1,7 @@
-<nu.ekskog.bitdisc.game.GameScrollView
+<nu.ekskog.bitdisc.BitdiscScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="nu.ekskog.bitdisc.course.CourseEditActivity"
+    tools:context="nu.ekskog.bitdisc.activities.CourseEditActivity"
     style="@style/bitdisc_activity">
 
     <LinearLayout
@@ -58,4 +58,4 @@
 
     </LinearLayout>
 
-</nu.ekskog.bitdisc.game.GameScrollView>
+</nu.ekskog.bitdisc.BitdiscScrollView>

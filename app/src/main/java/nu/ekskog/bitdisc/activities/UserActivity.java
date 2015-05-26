@@ -1,4 +1,4 @@
-package nu.ekskog.bitdisc.user;
+package nu.ekskog.bitdisc.activities;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -13,9 +13,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import nu.ekskog.bitdisc.AbstractBitdiscActivity;
 import nu.ekskog.bitdisc.C;
-import nu.ekskog.bitdisc.Entity;
+import nu.ekskog.bitdisc.lists.UserArrayAdapter;
+import nu.ekskog.bitdisc.models.Entity;
 import nu.ekskog.bitdisc.R;
 
 public class UserActivity extends AbstractBitdiscActivity {
@@ -42,6 +42,10 @@ public class UserActivity extends AbstractBitdiscActivity {
                 startActivity(i);
             }
         });
+
+        if(mServiceBound) {
+            fetchUsers();
+        }
     }
 
     @Override

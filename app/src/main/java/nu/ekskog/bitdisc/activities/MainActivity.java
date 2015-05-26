@@ -1,10 +1,10 @@
-package nu.ekskog.bitdisc;
+package nu.ekskog.bitdisc.activities;
 
+import android.app.ActionBar;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,9 +15,9 @@ import com.facebook.login.LoginManager;
 
 import java.util.Arrays;
 
-import nu.ekskog.bitdisc.course.CourseActivity;
-import nu.ekskog.bitdisc.game.GameActivity;
-import nu.ekskog.bitdisc.user.UserActivity;
+import nu.ekskog.bitdisc.C;
+import nu.ekskog.bitdisc.R;
+import nu.ekskog.bitdisc.models.Entity;
 
 public class MainActivity extends AbstractBitdiscActivity {
     private TextView mTxtHeading;
@@ -25,8 +25,11 @@ public class MainActivity extends AbstractBitdiscActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayHomeAsUpEnabled(false);
         setContentView(R.layout.activity_main);
+
+        ActionBar bar = getActionBar();
+        if(bar != null)
+            bar.setDisplayHomeAsUpEnabled(false);
 
         // Heading text
         mTxtHeading = (TextView) findViewById(R.id.txt_heading);
@@ -35,7 +38,6 @@ public class MainActivity extends AbstractBitdiscActivity {
         findViewById(R.id.btn_courses).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(C.TAG, "Courses");
                 Intent i = new Intent(MainActivity.this, CourseActivity.class);
                 startActivity(i);
             }
@@ -43,7 +45,6 @@ public class MainActivity extends AbstractBitdiscActivity {
         findViewById(R.id.btn_players).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(C.TAG, "Players");
                 Intent i = new Intent(MainActivity.this, UserActivity.class);
                 startActivity(i);
             }
@@ -51,11 +52,14 @@ public class MainActivity extends AbstractBitdiscActivity {
         findViewById(R.id.btn_games).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(C.TAG, "Games");
                 Intent i = new Intent(MainActivity.this, GameActivity.class);
                 startActivity(i);
             }
         });
+
+        if(mServiceBound) {
+            loadData();
+        }
     }
 
     @Override
@@ -83,22 +87,23 @@ public class MainActivity extends AbstractBitdiscActivity {
     @Override
     public void onServiceConnected(ComponentName name, IBinder binder) {
         super.onServiceConnected(name, binder);
-        setHeading();
+        loadData();
     }
 
     @Override
     public void newCloudData(String type, Entity entity) {
         if(type.equals(C.TYPE_AUTH) || type.equals(C.TYPE_UNAUTH)) {
-            setHeading();
+            loadData();
             return;
         }
         super.newCloudData(type, entity);
     }
 
-    private void setHeading() {
-        if(!mServiceBound)
-            return;
+    private void loadData() {
+        if(!mServiceBound) return;
+
         Entity user = mDataStore.getMe();
+
         if(user != null)
             mTxtHeading.setText("Welcome, " + user.get("name") + "!");
         else

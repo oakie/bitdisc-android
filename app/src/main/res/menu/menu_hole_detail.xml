@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="nu.ekskog.bitdisc.course.HoleDetailActivity">
+    tools:context="nu.ekskog.bitdisc.activities.HoleDetailActivity">
     <item android:id="@+id/action_edit_hole"
         android:title="@string/action_edit_hole"
         android:icon="@drawable/edit"

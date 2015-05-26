@@ -69,5 +69,6 @@
     <string name="start_time">Start time</string>
     <string name="duration">Duration</string>
     <string name="scorecard">Scorecard</string>
+    <string name="name">Name</string>
 
 </resources>

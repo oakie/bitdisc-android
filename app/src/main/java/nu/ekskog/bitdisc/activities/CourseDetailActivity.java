@@ -1,6 +1,5 @@
-package nu.ekskog.bitdisc.course;
+package nu.ekskog.bitdisc.activities;
 
-import android.app.ActionBar;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,18 +8,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import nu.ekskog.bitdisc.AbstractBitdiscActivity;
 import nu.ekskog.bitdisc.C;
-import nu.ekskog.bitdisc.Entity;
+import nu.ekskog.bitdisc.lists.HoleArrayAdapter;
+import nu.ekskog.bitdisc.models.Entity;
 import nu.ekskog.bitdisc.R;
 
 
@@ -58,6 +55,10 @@ public class CourseDetailActivity extends AbstractBitdiscActivity {
 
         mHoleAdapter = new HoleArrayAdapter(this, R.layout.list_hole_row, mHoles);
         mHoleList = (LinearLayout) findViewById(R.id.list_holes);
+
+        if(mServiceBound) {
+            loadData();
+        }
     }
 
     @Override

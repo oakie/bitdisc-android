@@ -1,5 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" tools:context="nu.ekskog.bitdisc.game.GameActivity">
+    xmlns:tools="http://schemas.android.com/tools" tools:context="nu.ekskog.bitdisc.activities.GameActivity">
     <item android:id="@+id/action_create_game"
         android:title="@string/action_new_game"
         android:icon="@drawable/plus"

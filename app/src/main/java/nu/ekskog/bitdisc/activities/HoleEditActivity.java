@@ -1,4 +1,4 @@
-package nu.ekskog.bitdisc.course;
+package nu.ekskog.bitdisc.activities;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -10,11 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import nu.ekskog.bitdisc.AbstractBitdiscActivity;
 import nu.ekskog.bitdisc.C;
-import nu.ekskog.bitdisc.Entity;
+import nu.ekskog.bitdisc.models.Entity;
 import nu.ekskog.bitdisc.R;
 
 public class HoleEditActivity extends AbstractBitdiscActivity {
@@ -40,6 +38,10 @@ public class HoleEditActivity extends AbstractBitdiscActivity {
             mHole = savedInstanceState.getString(C.FIELD_ID);
         else
             finish();
+
+        if(mServiceBound) {
+            loadData();
+        }
     }
 
     @Override

@@ -1,16 +1,10 @@
-package nu.ekskog.bitdisc.course;
+package nu.ekskog.bitdisc.activities;
 
 import android.content.ComponentName;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,25 +13,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.cloudinary.Cloudinary;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import nu.ekskog.bitdisc.AbstractBitdiscActivity;
 import nu.ekskog.bitdisc.C;
-import nu.ekskog.bitdisc.Entity;
-import nu.ekskog.bitdisc.ItemListListener;
+import nu.ekskog.bitdisc.lists.HoleArrayAdapter;
+import nu.ekskog.bitdisc.models.Entity;
+import nu.ekskog.bitdisc.lists.ItemListListener;
 import nu.ekskog.bitdisc.R;
 
 
@@ -80,6 +63,10 @@ public class CourseEditActivity extends AbstractBitdiscActivity {
                 return true;
             }
         });
+
+        if(mServiceBound) {
+            loadData();
+        }
     }
 
     @Override

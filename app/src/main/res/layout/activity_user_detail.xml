@@ -1,13 +1,24 @@
-<nu.ekskog.bitdisc.game.GameScrollView
+<nu.ekskog.bitdisc.BitdiscScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="nu.ekskog.bitdisc.user.UserDetailActivity"
+    tools:context="nu.ekskog.bitdisc.activities.UserDetailActivity"
     style="@style/bitdisc_activity">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView
+            style="@style/header"
+            android:text="@string/name" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_name"
+            android:textSize="24sp"
+            android:text="@string/user_name" />
 
         <TextView
             style="@style/header"
@@ -34,4 +45,4 @@
 
     </LinearLayout>
 
-</nu.ekskog.bitdisc.game.GameScrollView>
+</nu.ekskog.bitdisc.BitdiscScrollView>

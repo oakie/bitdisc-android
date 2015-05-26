@@ -1,4 +1,4 @@
-package nu.ekskog.bitdisc.game;
+package nu.ekskog.bitdisc.activities;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -20,12 +20,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 
-import nu.ekskog.bitdisc.AbstractBitdiscActivity;
 import nu.ekskog.bitdisc.C;
-import nu.ekskog.bitdisc.Entity;
+import nu.ekskog.bitdisc.models.Entity;
 import nu.ekskog.bitdisc.R;
 import nu.ekskog.bitdisc.Util;
-import nu.ekskog.bitdisc.user.UserArrayAdapter;
+import nu.ekskog.bitdisc.lists.UserArrayAdapter;
 
 
 public class GameDetailActivity extends AbstractBitdiscActivity {
@@ -67,6 +66,12 @@ public class GameDetailActivity extends AbstractBitdiscActivity {
         mPlayerAdapter.setShowRank(true);
         mPlayerAdapter.setShowValue(true);
         mPlayerAdapter.setShowAvatar(true);
+
+        if(mServiceBound) {
+            loadData();
+            makeRankList();
+            makeGameTable();
+        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-package nu.ekskog.bitdisc.course;
+package nu.ekskog.bitdisc.activities;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -14,11 +14,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import nu.ekskog.bitdisc.AbstractBitdiscActivity;
 import nu.ekskog.bitdisc.C;
-import nu.ekskog.bitdisc.Entity;
-import nu.ekskog.bitdisc.IBitdiscListener;
-import nu.ekskog.bitdisc.ItemListListener;
+import nu.ekskog.bitdisc.lists.CourseArrayAdapter;
+import nu.ekskog.bitdisc.models.Entity;
+import nu.ekskog.bitdisc.lists.ItemListListener;
 import nu.ekskog.bitdisc.R;
 
 
@@ -57,6 +56,11 @@ public class CourseActivity extends AbstractBitdiscActivity {
         });
         lv.setOnItemLongClickListener(mListListener);
         lv.setOnCreateContextMenuListener(mListListener);
+
+        if(mServiceBound) {
+            fetchCourses();
+            fetchHoles();
+        }
     }
 
     @Override

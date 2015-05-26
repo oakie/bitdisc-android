@@ -1,4 +1,4 @@
-package nu.ekskog.bitdisc;
+package nu.ekskog.bitdisc.lists;
 
 import android.app.Activity;
 import android.util.Log;
@@ -7,6 +7,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+
+import nu.ekskog.bitdisc.C;
+import nu.ekskog.bitdisc.R;
 
 public class ItemListListener implements View.OnCreateContextMenuListener,
         View.OnLongClickListener, AdapterView.OnItemLongClickListener {

@@ -1,7 +1,6 @@
-package nu.ekskog.bitdisc.game;
+package nu.ekskog.bitdisc.activities;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,15 +19,13 @@ import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import nu.ekskog.bitdisc.AbstractBitdiscActivity;
 import nu.ekskog.bitdisc.C;
-import nu.ekskog.bitdisc.Entity;
+import nu.ekskog.bitdisc.models.Entity;
 import nu.ekskog.bitdisc.R;
 import nu.ekskog.bitdisc.Util;
 
@@ -65,6 +62,11 @@ public class GamePlayActivity extends AbstractBitdiscActivity {
         mTxtDuration = (TextView) findViewById(R.id.txt_duration);
         mTableHeader = (TableLayout) findViewById(R.id.table_header);
         mTableBody = (TableLayout) findViewById(R.id.table_body);
+
+        if(mServiceBound) {
+            loadData();
+            makeGameTable();
+        }
     }
 
     @Override

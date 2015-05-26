@@ -1,5 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" tools:context="nu.ekskog.bitdisc.course.CourseActivity">
+    xmlns:tools="http://schemas.android.com/tools" tools:context="nu.ekskog.bitdisc.activities.CourseActivity">
     <item android:id="@+id/action_create_course"
         android:title="@string/action_create_course"
         android:icon="@drawable/plus"

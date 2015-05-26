@@ -1,4 +1,4 @@
-package nu.ekskog.bitdisc.user;
+package nu.ekskog.bitdisc.activities;
 
 import android.app.ActionBar;
 import android.content.ComponentName;
@@ -14,12 +14,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import nu.ekskog.bitdisc.AbstractBitdiscActivity;
 import nu.ekskog.bitdisc.C;
-import nu.ekskog.bitdisc.Entity;
+import nu.ekskog.bitdisc.lists.UserArrayAdapter;
+import nu.ekskog.bitdisc.models.Entity;
 import nu.ekskog.bitdisc.R;
-import nu.ekskog.bitdisc.course.CourseActivity;
-import nu.ekskog.bitdisc.course.CourseEditActivity;
 
 
 public class UserDetailActivity extends AbstractBitdiscActivity {
@@ -28,6 +26,7 @@ public class UserDetailActivity extends AbstractBitdiscActivity {
     private ArrayList<Entity> mFriends = new ArrayList<>();
     private UserArrayAdapter mFriendAdapter;
 
+    private TextView mTxtName;
     private LinearLayout mStatsList;
     private LinearLayout mFriendList;
 
@@ -36,6 +35,7 @@ public class UserDetailActivity extends AbstractBitdiscActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_detail);
 
+        mTxtName = (TextView) findViewById(R.id.user_name);
         mStatsList = (LinearLayout) findViewById(R.id.stats_list);
         mFriendList = (LinearLayout) findViewById(R.id.friend_list);
 
@@ -50,8 +50,9 @@ public class UserDetailActivity extends AbstractBitdiscActivity {
         mFriendAdapter = new UserArrayAdapter(this, R.layout.list_user_row, mFriends);
         mFriendAdapter.setShowAvatar(true);
 
-        if(mServiceBound)
+        if(mServiceBound) {
             loadData();
+        }
     }
 
     @Override
@@ -120,9 +121,9 @@ public class UserDetailActivity extends AbstractBitdiscActivity {
         Entity user = mDataStore.getUsers().get(mUser);
         if(user == null) return;
 
-        ActionBar ab = getActionBar();
-        if(ab != null)
-            ab.setTitle((String) user.get(C.FIELD_NAME));
+        mTxtName.setText("");
+        if(user.has(C.FIELD_NAME))
+            mTxtName.setText((String) user.get(C.FIELD_NAME));
 
         mFriends.clear();
         if(user.has(C.FIELD_FRIENDS)) {
@@ -142,9 +143,12 @@ public class UserDetailActivity extends AbstractBitdiscActivity {
         for(Entity subgame : subgames) {
             if(mUser.equals(subgame.get(C.FIELD_USER))) {
                 numGames++;
-                ArrayList<Long> splits = (ArrayList<Long>) subgame.get(C.FIELD_SPLITS);
-                for(Long s : splits)
-                    numThrows += s.intValue();
+
+                if(subgame.has(C.FIELD_SPLITS)) {
+                    ArrayList<Long> splits = (ArrayList<Long>) subgame.get(C.FIELD_SPLITS);
+                    for (Long s : splits)
+                        numThrows += s.intValue();
+                }
             }
         }
 

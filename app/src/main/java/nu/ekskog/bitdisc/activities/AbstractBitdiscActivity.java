@@ -1,5 +1,6 @@
-package nu.ekskog.bitdisc;
+package nu.ekskog.bitdisc.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -17,6 +18,11 @@ import com.facebook.login.LoginManager;
 
 import java.util.Arrays;
 
+import nu.ekskog.bitdisc.C;
+import nu.ekskog.bitdisc.models.Entity;
+import nu.ekskog.bitdisc.services.BitdiscService;
+import nu.ekskog.bitdisc.services.IBitdiscListener;
+
 public class AbstractBitdiscActivity extends Activity implements IBitdiscListener, ServiceConnection {
     protected BitdiscService mDataStore;
     protected boolean mServiceBound = false;
@@ -28,7 +34,10 @@ public class AbstractBitdiscActivity extends Activity implements IBitdiscListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ActionBar bar = getActionBar();
+        if(bar != null)
+            bar.setDisplayHomeAsUpEnabled(true);
 
         // Attach to background service
         Intent intent = new Intent(this, BitdiscService.class);

@@ -1,4 +1,4 @@
-package nu.ekskog.bitdisc;
+package nu.ekskog.bitdisc.models;
 
 import java.util.HashMap;
 import java.util.Map;

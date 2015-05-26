@@ -1,4 +1,4 @@
-package nu.ekskog.bitdisc.game;
+package nu.ekskog.bitdisc.activities;
 
 import android.app.Dialog;
 import android.content.ComponentName;
@@ -22,13 +22,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import nu.ekskog.bitdisc.AbstractBitdiscActivity;
 import nu.ekskog.bitdisc.C;
-import nu.ekskog.bitdisc.Entity;
-import nu.ekskog.bitdisc.ItemListListener;
+import nu.ekskog.bitdisc.models.Entity;
+import nu.ekskog.bitdisc.lists.ItemListListener;
 import nu.ekskog.bitdisc.R;
-import nu.ekskog.bitdisc.user.UserArrayAdapter;
-import nu.ekskog.bitdisc.course.CourseArrayAdapter;
+import nu.ekskog.bitdisc.lists.UserArrayAdapter;
+import nu.ekskog.bitdisc.lists.CourseArrayAdapter;
 
 public class GameEditActivity extends AbstractBitdiscActivity {
     private String mGame;
@@ -114,6 +113,13 @@ public class GameEditActivity extends AbstractBitdiscActivity {
 
         makeUserDialog();
         makeGuestDialog();
+
+        if(mServiceBound) {
+            fetchCourses();
+            fetchHoles();
+            fetchUsers();
+            loadData();
+        }
     }
 
     @Override
@@ -344,7 +350,7 @@ public class GameEditActivity extends AbstractBitdiscActivity {
         root.setOrientation(LinearLayout.VERTICAL);
 
         TextView txtAdd = new TextView(this);
-        txtAdd.setText("Existing guest");
+        txtAdd.setText("Recent guest");
         txtAdd.setTextSize(30);
         root.addView(txtAdd);
 

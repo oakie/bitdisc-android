@@ -25,14 +25,14 @@
         
         <!-- Services -->
         <service
-            android:name=".BitdiscService"
+            android:name=".services.BitdiscService"
             android:enabled="true"
             android:exported="false">
         </service>
 
         <!-- Activities -->
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,50 +45,50 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".user.UserActivity"
+            android:name=".activities.UserActivity"
             android:label="@string/title_activity_user"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".activities.MainActivity" >
         </activity>
         <activity
-            android:name=".user.UserDetailActivity"
+            android:name=".activities.UserDetailActivity"
             android:label="@string/title_activity_user_detail" >
         </activity>
         <activity
-            android:name=".course.CourseActivity"
+            android:name=".activities.CourseActivity"
             android:label="@string/title_activity_course"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".activities.MainActivity" >
         </activity>
         <activity
-            android:name=".course.CourseEditActivity"
+            android:name=".activities.CourseEditActivity"
             android:label="@string/title_activity_course_edit" >
         </activity>
         <activity
-            android:name=".course.HoleEditActivity"
+            android:name=".activities.HoleEditActivity"
             android:label="@string/title_activity_hole_edit" >
         </activity>
         <activity
-            android:name=".course.CourseDetailActivity"
+            android:name=".activities.CourseDetailActivity"
             android:label="@string/title_activity_course_detail" >
         </activity>
         <activity
-            android:name=".course.HoleDetailActivity"
+            android:name=".activities.HoleDetailActivity"
             android:label="@string/title_activity_hole_detail" >
         </activity>
         <activity
-            android:name=".game.GameActivity"
+            android:name=".activities.GameActivity"
             android:label="@string/title_activity_game"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".activities.MainActivity" >
         </activity>
         <activity
-            android:name=".game.GameEditActivity"
+            android:name=".activities.GameEditActivity"
             android:label="@string/title_activity_game_edit" >
         </activity>
         <activity
-            android:name=".game.GamePlayActivity"
+            android:name=".activities.GamePlayActivity"
             android:label="@string/title_activity_game_play" >
         </activity>
         <activity
-            android:name=".game.GameDetailActivity"
+            android:name=".activities.GameDetailActivity"
             android:label="@string/title_activity_game_detail" >
         </activity>
     </application>

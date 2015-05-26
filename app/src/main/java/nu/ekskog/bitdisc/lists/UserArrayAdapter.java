@@ -1,4 +1,4 @@
-package nu.ekskog.bitdisc.user;
+package nu.ekskog.bitdisc.lists;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import nu.ekskog.bitdisc.C;
-import nu.ekskog.bitdisc.Entity;
+import nu.ekskog.bitdisc.models.Entity;
 import nu.ekskog.bitdisc.R;
 
 public class UserArrayAdapter extends ArrayAdapter<Entity> {

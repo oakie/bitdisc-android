@@ -1,4 +1,4 @@
-package nu.ekskog.bitdisc.course;
+package nu.ekskog.bitdisc.lists;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import nu.ekskog.bitdisc.C;
-import nu.ekskog.bitdisc.Entity;
+import nu.ekskog.bitdisc.models.Entity;
 import nu.ekskog.bitdisc.R;
 
 public class HoleArrayAdapter extends ArrayAdapter<Entity> {

@@ -1,4 +1,4 @@
-package nu.ekskog.bitdisc.game;
+package nu.ekskog.bitdisc.activities;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -11,15 +11,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import nu.ekskog.bitdisc.AbstractBitdiscActivity;
 import nu.ekskog.bitdisc.C;
-import nu.ekskog.bitdisc.Entity;
-import nu.ekskog.bitdisc.ItemListListener;
+import nu.ekskog.bitdisc.lists.GameArrayAdapter;
+import nu.ekskog.bitdisc.models.Entity;
+import nu.ekskog.bitdisc.lists.ItemListListener;
 import nu.ekskog.bitdisc.R;
 
 public class GameActivity extends AbstractBitdiscActivity {
@@ -64,6 +63,11 @@ public class GameActivity extends AbstractBitdiscActivity {
         });
         lv.setOnItemLongClickListener(mListListener);
         lv.setOnCreateContextMenuListener(mListListener);
+
+        if(mServiceBound) {
+            fetchGames();
+            fetchCourses();
+        }
     }
 
     @Override

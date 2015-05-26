@@ -1,4 +1,4 @@
-package nu.ekskog.bitdisc;
+package nu.ekskog.bitdisc.services;
 
 import android.app.Service;
 import android.content.Intent;
@@ -30,6 +30,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import nu.ekskog.bitdisc.C;
+import nu.ekskog.bitdisc.models.Entity;
+import nu.ekskog.bitdisc.R;
 
 public class BitdiscService extends Service {
     private final IBinder mBinder = new ModelServiceBinder();
@@ -113,8 +117,7 @@ public class BitdiscService extends Service {
     }
 
     public void auth(String token) {
-        if(!mUser.equals(""))
-            return;
+        if(!mUser.equals("")) return;
         Log.d(C.TAG, "service AUTH");
         mRootRef.authWithOAuthToken("facebook", token, new Firebase.AuthResultHandler() {
             @Override
@@ -130,8 +133,7 @@ public class BitdiscService extends Service {
     }
 
     public void unauth() {
-        if(mUser.equals(""))
-            return;
+        if(mUser.equals("")) return;
         Log.d(C.TAG, "service UNAUTH");
         mRootRef.unauth();
     }
@@ -244,7 +246,6 @@ public class BitdiscService extends Service {
 
     public Entity createCourse() {
         Entity course = new Entity(C.TYPE_COURSE);
-        course.put(C.FIELD_NAME, "New course");
         pushEntity(course);
         return course;
     }
@@ -320,23 +321,18 @@ public class BitdiscService extends Service {
     private void insert(String type, Entity entity) {
         switch (type) {
             case C.TYPE_USER:
-                Log.d(C.TAG, "insert user: " + entity.get(C.FIELD_NAME));
                 mUsers.put((String) entity.get(C.FIELD_ID), entity);
                 break;
             case C.TYPE_COURSE:
-                Log.d(C.TAG, "insert course: " + entity.get(C.FIELD_NAME));
                 mCourses.put((String) entity.get(C.FIELD_ID), entity);
                 break;
             case C.TYPE_HOLE:
-                Log.d(C.TAG, "insert hole: " + entity.get(C.FIELD_ID));
                 mHoles.put((String) entity.get(C.FIELD_ID), entity);
                 break;
             case C.TYPE_GAME:
-                Log.d(C.TAG, "insert game: " + entity.get(C.FIELD_ID));
                 mGames.put((String) entity.get(C.FIELD_ID), entity);
                 break;
             case C.TYPE_SUBGAME:
-                Log.d(C.TAG, "insert subgame: " + entity.get(C.FIELD_ID));
                 mSubgames.put((String) entity.get(C.FIELD_ID), entity);
                 break;
         }
@@ -346,23 +342,18 @@ public class BitdiscService extends Service {
         String key = (String) entity.get(C.FIELD_ID);
         switch (type) {
             case C.TYPE_USER:
-                Log.d(C.TAG, "remove user: " + entity.get(C.FIELD_NAME));
                 mUsers.remove(key);
                 break;
             case C.TYPE_COURSE:
-                Log.d(C.TAG, "remove course: " + entity.get(C.FIELD_NAME));
                 mCourses.remove(key);
                 break;
             case C.TYPE_HOLE:
-                Log.d(C.TAG, "remove hole: " + entity.get(C.FIELD_ID));
                 mHoles.remove(key);
                 break;
             case C.TYPE_GAME:
-                Log.d(C.TAG, "remove game: " + entity.get(C.FIELD_ID));
                 mGames.remove(key);
                 break;
             case C.TYPE_SUBGAME:
-                Log.d(C.TAG, "remove subgame: " + entity.get(C.FIELD_ID));
                 mSubgames.remove(key);
                 break;
         }
@@ -380,10 +371,8 @@ public class BitdiscService extends Service {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                Log.d(C.TAG, "download task");
                 InputStream is = (InputStream) new URL(mUrl).getContent();
                 mBitmap = BitmapFactory.decodeStream(is);
-                Log.d(C.TAG, "downloaded image");
             } catch(Exception e) {
                 e.printStackTrace();
             }
@@ -418,7 +407,6 @@ public class BitdiscService extends Service {
                 bmp.compress(Bitmap.CompressFormat.PNG, 100, os);
                 ByteArrayInputStream is = new ByteArrayInputStream(os.toByteArray());
                 Map result = mCloudinary.uploader().upload(is, null);
-                Log.d(C.TAG, "image url: " + result.get("url"));
 
                 Entity newEntity = new Entity(mEntity);
 
