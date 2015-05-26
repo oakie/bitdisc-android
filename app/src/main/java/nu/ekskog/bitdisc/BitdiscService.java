@@ -94,7 +94,7 @@ public class BitdiscService extends Service {
         mRootRef.child(C.TYPE_GAME).addChildEventListener(mFirebaseListener);
         mRootRef.child(C.TYPE_SUBGAME).addChildEventListener(mFirebaseListener);
 
-        mCloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(this));
+        mCloudinary = new Cloudinary(getResources().getString(R.string.cloudinary_url));
     }
 
     @Override
