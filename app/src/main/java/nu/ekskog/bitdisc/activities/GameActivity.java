@@ -13,6 +13,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 
 import nu.ekskog.bitdisc.C;
@@ -134,6 +137,18 @@ public class GameActivity extends AbstractBitdiscActivity {
     private void fetchGames() {
         mGames.clear();
         mGames.addAll(mDataStore.getGames().values());
+        Collections.sort(mGames, new Comparator<Entity>() {
+            @Override
+            public int compare(Entity lhs, Entity rhs) {
+                long l = ((Long) lhs.get(C.FIELD_TIMESTAMP));
+                long r = ((Long) rhs.get(C.FIELD_TIMESTAMP));
+                if(l > r)
+                    return -1;
+                if(l < r)
+                    return 1;
+                return 0;
+            }
+        });
         mGameAdapter.notifyDataSetChanged();
     }
 
