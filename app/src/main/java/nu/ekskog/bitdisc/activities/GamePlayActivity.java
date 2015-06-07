@@ -208,10 +208,19 @@ public class GamePlayActivity extends AbstractBitdiscActivity {
         Log.d(C.TAG, "saveData");
         if(!checkService()) return;
 
-        for(Entity subgame : mSubgames) {
-            Log.d(C.TAG, "saving " + subgame.toString());
+        ArrayList<Entity> subgames = new ArrayList<>();
+        for(Entity oldSubgame : mSubgames) {
+            Entity newSubgame = new Entity(oldSubgame);
+            ArrayList<Long> splits = new ArrayList<>((ArrayList<Long>) oldSubgame.get(C.FIELD_SPLITS));
+            newSubgame.put(C.FIELD_SPLITS, splits);
+
+            subgames.add(newSubgame);
+        }
+
+        for(Entity subgame : subgames) {
             mDataStore.updateEntity(subgame);
         }
+        Log.d(C.TAG, "saved subgames: " + subgames.size());
     }
 
     public void makeGameTable() {

@@ -47,7 +47,8 @@ public class GameEditActivity extends AbstractBitdiscActivity {
 
     private Entity mCourse;
     private ArrayList<Entity> mSubgames = new ArrayList<>();
-    private UserArrayAdapter mSubgameAdapter;
+    private ArrayList<Entity> mPlayers = new ArrayList<>();
+    private UserArrayAdapter mPlayerAdapter;
     private ItemListListener mListListener;
 
     @Override
@@ -73,8 +74,8 @@ public class GameEditActivity extends AbstractBitdiscActivity {
         mUserAdapter.setShowAvatar(true);
         mGuestAdapter = new UserArrayAdapter(this, R.layout.list_user_row, mGuests);
         mGuestAdapter.setShowAvatar(true);
-        mSubgameAdapter = new UserArrayAdapter(this, R.layout.list_user_row, mSubgames);
-        mSubgameAdapter.setShowAvatar(true);
+        mPlayerAdapter = new UserArrayAdapter(this, R.layout.list_user_row, mPlayers);
+        mPlayerAdapter.setShowAvatar(true);
 
         mCourseSpinner.setAdapter(mCourseAdapter);
         mCourseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -315,13 +316,14 @@ public class GameEditActivity extends AbstractBitdiscActivity {
         }
 
         mSubgames.clear();
+        mPlayers.clear();
         if(game.has(C.FIELD_SUBGAMES)) {
             ArrayList<String> subs = (ArrayList<String>) game.get(C.FIELD_SUBGAMES);
             for(String s : subs) {
                 Entity subgame = mDataStore.getSubgames().get(s);
                 String u = (String) subgame.get(C.FIELD_USER);
                 Entity user = mDataStore.getUsers().get(u);
-                subgame.put(C.FIELD_NAME, user.get(C.FIELD_NAME));
+                mPlayers.add(user);
                 mSubgames.add(subgame);
             }
             Log.d(C.TAG, "loaded subgames: " + mSubgames.size());
@@ -404,9 +406,9 @@ public class GameEditActivity extends AbstractBitdiscActivity {
 
     private void makePlayerList() {
         mPlayerList.removeAllViews();
-        final int count = mSubgameAdapter.getCount();
+        final int count = mPlayerAdapter.getCount();
         for(int i = 0; i < count; ++i) {
-            View v = mSubgameAdapter.getView(i, null, null);
+            View v = mPlayerAdapter.getView(i, null, null);
             v.setBackgroundResource(R.drawable.clickable_background);
             v.setLongClickable(true);
             v.setOnLongClickListener(mListListener);
