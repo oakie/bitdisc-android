@@ -17,13 +17,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+        prod {
+            applicationId "nu.ekskog.bitdisc"
+            versionName "1.0"
+        }
+        dev {
+            applicationId "nu.ekskog.bitdisc.dev"
+            versionName "1.0-dev"
+        }
+    }
 
     packagingOptions {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
     }
-    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/secrets'] } }
 }
 
 repositories {
