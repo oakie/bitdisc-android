@@ -15,6 +15,8 @@ public class C {
     public static final String FIELD_ID = "id";
     public static final String FIELD_NAME = "name";
     public static final String FIELD_EMAIL = "email";
+    public static final String FIELD_CONNECTIONS = "connections";
+    public static final String FIELD_LAST_ONLINE = "last_online";
     public static final String FIELD_IS_GUEST = "is_guest";
     public static final String FIELD_FRIENDS = "friends";
     public static final String FIELD_AVATAR = "avatar";

@@ -166,6 +166,8 @@ public class GamePlayActivity extends AbstractBitdiscActivity {
                 mTxtCourse.setText((String) mCourse.get(C.FIELD_NAME));
         }
 
+        mTxtStart.setText("-");
+        mTxtDuration.setText("-");
         if(game.get(C.FIELD_START) != null) {
             long timestamp = (Long) game.get(C.FIELD_START);
             Date t = new Date(timestamp);

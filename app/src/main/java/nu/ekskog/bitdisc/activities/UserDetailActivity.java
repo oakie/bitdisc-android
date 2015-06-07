@@ -1,6 +1,5 @@
 package nu.ekskog.bitdisc.activities;
 
-import android.app.ActionBar;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.IBinder;
@@ -12,7 +11,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import nu.ekskog.bitdisc.C;
 import nu.ekskog.bitdisc.lists.UserArrayAdapter;
@@ -27,6 +28,7 @@ public class UserDetailActivity extends AbstractBitdiscActivity {
     private UserArrayAdapter mFriendAdapter;
 
     private TextView mTxtName;
+    private TextView mTxtOnline;
     private LinearLayout mStatsList;
     private LinearLayout mFriendList;
 
@@ -36,6 +38,7 @@ public class UserDetailActivity extends AbstractBitdiscActivity {
         setContentView(R.layout.activity_user_detail);
 
         mTxtName = (TextView) findViewById(R.id.user_name);
+        mTxtOnline = (TextView) findViewById(R.id.user_online);
         mStatsList = (LinearLayout) findViewById(R.id.stats_list);
         mFriendList = (LinearLayout) findViewById(R.id.friend_list);
 
@@ -124,6 +127,13 @@ public class UserDetailActivity extends AbstractBitdiscActivity {
         mTxtName.setText("");
         if(user.has(C.FIELD_NAME))
             mTxtName.setText((String) user.get(C.FIELD_NAME));
+
+        mTxtOnline.setText("");
+        if(user.has(C.FIELD_LAST_ONLINE)) {
+            long start = (Long) user.get(C.FIELD_LAST_ONLINE);
+            SimpleDateFormat dt = new SimpleDateFormat(C.FORMAT_DATE_TIME);
+            mTxtOnline.setText(dt.format(new Date(start)));
+        }
 
         mFriends.clear();
         if(user.has(C.FIELD_FRIENDS)) {

@@ -22,6 +22,18 @@
 
         <TextView
             style="@style/header"
+            android:text="@string/last_online" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_online"
+            android:textSize="24sp"
+            android:text="@string/a_time" />
+
+
+        <TextView
+            style="@style/header"
             android:text="@string/stats" />
 
         <LinearLayout

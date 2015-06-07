@@ -70,5 +70,6 @@
     <string name="duration">Duration</string>
     <string name="scorecard">Scorecard</string>
     <string name="name">Name</string>
+    <string name="last_online">Last online</string>
 
 </resources>

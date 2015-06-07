@@ -19,6 +19,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ServerValue;
+import com.firebase.client.ValueEventListener;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -40,9 +41,11 @@ public class BitdiscService extends Service {
 
     private String mUser = "";
 
-    private Set<IBitdiscListener> mListeners;
+    private Set<IBitdiscListener> mListeners = new HashSet<>();
     private Firebase mRootRef;
-    private ChildEventListener mFirebaseListener;
+    private Firebase mConnectionRef;
+    private ChildEventListener mFirebaseDataListener;
+    private ValueEventListener mFirebaseConnectionListener;
 
     private Cloudinary mCloudinary;
 
@@ -64,7 +67,6 @@ public class BitdiscService extends Service {
     @Override
     public void onCreate(){
         super.onCreate();
-        mListeners = new HashSet<>();
 
         mRootRef = new Firebase(getResources().getString(R.string.firebase_url));
         mRootRef.addAuthStateListener(new Firebase.AuthStateListener() {
@@ -74,7 +76,29 @@ public class BitdiscService extends Service {
             }
         });
 
-        mFirebaseListener = new ChildEventListener() {
+        mFirebaseConnectionListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                boolean connected = snapshot.getValue(Boolean.class);
+                if(connected) {
+                    Firebase me = mRootRef.child(C.TYPE_USER).child(mUser);
+
+                    Firebase connectionsRef = me.child(C.FIELD_CONNECTIONS).push();
+                    connectionsRef.setValue(Boolean.TRUE);
+                    connectionsRef.onDisconnect().removeValue();
+
+                    Firebase lastOnlineRef = me.child(C.FIELD_LAST_ONLINE);
+                    lastOnlineRef.onDisconnect().setValue(ServerValue.TIMESTAMP);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {}
+        };
+        mConnectionRef = mRootRef.child(".info/connected");
+        mConnectionRef.addValueEventListener(mFirebaseConnectionListener);
+
+        mFirebaseDataListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 handle(C.EVENT_ADD, dataSnapshot);
@@ -92,17 +116,18 @@ public class BitdiscService extends Service {
             @Override
             public void onCancelled(FirebaseError firebaseError) {}
         };
-        mRootRef.child(C.TYPE_USER).addChildEventListener(mFirebaseListener);
-        mRootRef.child(C.TYPE_COURSE).addChildEventListener(mFirebaseListener);
-        mRootRef.child(C.TYPE_HOLE).addChildEventListener(mFirebaseListener);
-        mRootRef.child(C.TYPE_GAME).addChildEventListener(mFirebaseListener);
-        mRootRef.child(C.TYPE_SUBGAME).addChildEventListener(mFirebaseListener);
+        mRootRef.child(C.TYPE_USER).addChildEventListener(mFirebaseDataListener);
+        mRootRef.child(C.TYPE_COURSE).addChildEventListener(mFirebaseDataListener);
+        mRootRef.child(C.TYPE_HOLE).addChildEventListener(mFirebaseDataListener);
+        mRootRef.child(C.TYPE_GAME).addChildEventListener(mFirebaseDataListener);
+        mRootRef.child(C.TYPE_SUBGAME).addChildEventListener(mFirebaseDataListener);
 
         mCloudinary = new Cloudinary(getResources().getString(R.string.cloudinary_url));
     }
 
     @Override
     public void onDestroy() {
+        Log.d(C.TAG, "destroying service");
         super.onDestroy();
     }
 

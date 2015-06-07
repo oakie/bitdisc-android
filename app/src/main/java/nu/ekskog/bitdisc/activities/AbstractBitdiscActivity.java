@@ -40,7 +40,7 @@ public class AbstractBitdiscActivity extends Activity implements IBitdiscListene
             bar.setDisplayHomeAsUpEnabled(true);
 
         // Attach to background service
-        Intent intent = new Intent(this, BitdiscService.class);
+        Intent intent = new Intent(getApplicationContext(), BitdiscService.class);
         getApplicationContext().startService(intent);
         getApplicationContext().bindService(intent, this, Context.BIND_AUTO_CREATE);
 
@@ -75,8 +75,10 @@ public class AbstractBitdiscActivity extends Activity implements IBitdiscListene
     public void onDestroy() {
         super.onDestroy();
         mFacebookTokenTracker.stopTracking();
-        if(mServiceBound)
+        if(mServiceBound) {
             unsubscribe();
+            getApplicationContext().unbindService(this);
+        }
     }
 
     @Override
